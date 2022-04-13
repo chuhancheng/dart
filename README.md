@@ -17,7 +17,7 @@ Technical Stack:
 
 ### Create new project:
 ```bash
-dart --new project_name
+dart --new <project_name>
 ```
 
 ### Run project in watch mode:
