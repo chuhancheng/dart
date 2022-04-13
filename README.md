@@ -7,6 +7,7 @@
 Dart is use for quickly setup new web project for POC task.
 
 Technical Stack:
+- Git
 - Typescript
 - SCSS
 - HTML

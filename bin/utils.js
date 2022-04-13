@@ -69,12 +69,4 @@ async function newProject(projectName) {
   } catch (e) {
     console.error(e); // should contain code (exit code) and signal (that caused the termination).
   }
-
-//   "browser-sync": "^2.27.9",
-// "browser-sync-webpack-plugin": "^2.3.0",
-// "html-webpack-plugin": "^5.5.0",
-// "ts-loader": "^9.2.8",
-// "typescript": "^4.6.3",
-// "webpack": "^5.70.0",
-// "webpack-cli": "^4.9.2"
 }
