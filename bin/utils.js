@@ -43,12 +43,19 @@ async function newProject(projectName) {
     fs.mkdirSync(projectName);
     fs.mkdirSync(`${projectName}/src`);
     let code;
-    let config = {cwd: `./${projectName}`, encoding: 'utf8'};
+    let config = {
+      cwd: `./${projectName}`, // Set runtime path
+      encoding: 'utf8', 
+      stdio: 'inherit' // Keep comment output still print on the screen. // https://stackoverflow.com/questions/30134236/use-child-process-execsync-but-keep-output-in-console
+    };
     code = execSync(`npm init -y`, config);
     code = execSync(`sed 's/test/${projectName}/g' package.json`, config);
     code = execSync(`npx npm-add-script -k dev -v "webpack --progress --watch --mode=development"`, config);
+    code = execSync(`npx npm-add-script -k webpack -v "webpack --mode=development"`, config);
     code = execSync(`npm install -y browser-sync browser-sync-webpack-plugin html-webpack-plugin ts-loader typescript webpack webpack-cli`, config);
-    
+    code = execSync(`npm install -y --save-dev mini-css-extract-plugin css-loader sass sass-loader`, config);
+  
+
     let sourcePath = path.join(__dirname, 'templates');
     let tartgetPath = path.join(CURR_DIR, projectName);
     createDirectoryContents(sourcePath, tartgetPath);
