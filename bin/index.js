@@ -2,20 +2,48 @@
 
 // https://dev.to/rushankhan1/build-a-cli-with-node-js-4jbi
 const yargs = require("yargs");
-const utils = require('./utils.js')
+const utils = require("./utils.js");
 
-const usage = "\nUsage: dart --new <project_name>";
-const options = yargs  
-      .usage(usage)  
-      .option("n", {alias:"new", describe: "new project", type: "string", demandOption : true })
-      .help(true)  
-      .argv;
+const usage = "\nUsage: dart <web|server> <project_name>";
 
-function run () {
-    if(yargs.argv.n|| yargs.argv.new){  
-        utils.newProject(yargs.argv.new || yargs.argv.n);
-        return;  
-    }
+yargs
+    .usage(usage)
+    .command({
+        command: 'server <project_name>',
+        aliases: ['s'],
+        desc: 'Generate server project',
+        builder: (yargs) => {
+            return yargs.positional('project_name', {
+                describe: 'created project name'
+            })
+        },
+        handler: serverGenerator
+    })
+    .command({
+        command: 'web <project_name>',
+        aliases: ['w'],
+        desc: 'Generate web project',
+        builder: (yargs) => {
+            return yargs.positional('project_name', {
+                describe: 'created project name'
+            })
+        },
+        handler: webGenerator
+    })
+    .demandCommand(1, `Please use suggested command above to work with this tool.`)
+    .help().argv;
+
+function webGenerator(argv) {
+    console.log(`Start generate web project:`, argv.project_name);
+    utils.newProject(argv.project_name);
+}
+function serverGenerator(argv) {
+    console.log(`Start generate server project:`, argv.project_name);
+    // utils.newProject(argv.project_name);
+}
+
+function run() {
+    
 }
 
 run();

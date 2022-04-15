@@ -6,7 +6,7 @@
 
 Dart is use for quickly setup new web project for POC task.
 
-Technical Stack:
+WEB Server echnical Stack:
 - Git
 - Typescript
 - SCSS
@@ -18,7 +18,7 @@ Technical Stack:
 
 ### Create new project:
 ```bash
-dart --new <project_name>
+dart web <project_name>
 ```
 
 ### Run project in watch mode:
